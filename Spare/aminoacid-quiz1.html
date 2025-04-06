@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f0f8ff;
+            color: #333;
+            padding-top: 70px; /* Space for the fixed header */
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 20px;
+            background: #060625;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .nav {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0 1rem;
+            border-left: 2px solid #ffffff;
+        }
+        h1 {
+            text-align: center;
+            color: #4caf50;
+            text-shadow: 1px 1px 2px #ccc;
+            margin-top: 20px;
+        }
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .quiz-item:last-child {
+            border-bottom: none;
+        }
+        .word {
+            width: 40%;
+            font-weight: bold;
+            color: #555;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .input-container input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        .input-container input:focus {
+            border-color: #4caf50;
+            outline: none;
+        }
+        .input-container .tick {
+            font-size: 20px;
+            color: #4caf50;
+            display: none;
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-wrap: wrap;
+                text-align: center;
+            }
+            .nav {
+                border-left: none;
+                padding: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">CBU SOM</a>
+        <h2 style="color: #ffffff; margin: 0;">Totoz Collection!</h2>
+        <a href="../Totoz Study Space/biochem-T1.html" class="nav">Back</a>
+    </header>
+
+    <main>
+        <h1>Quiz Game</h1>
+        <div class="quiz-container" id="quiz-container">
+            <!-- Quiz items will be dynamically generated here -->
+        </div>
+    </main>
+
+    <script>
+        const words = [
+            { left: "Serine", right: "Hydroxyl" },
+            { left: "Car", right: "Hydroxyl" },
+            { left: "Cysteine", right: "Sulfhydryl" }
+            { left: "Methionine", right: "Methionine" }
+            { left: "Asparagine", right: "Amide" }
+            { left: "Dog", right: "Amide" }
+            { left: "Aspartic acid", right: "beta-carboxyl" }
+            { left: "Dog", right: "gamma-carboxyl" }
+            { left: "Dog", right: "Animal" }
+            { left: "Dog", right: "Animal" }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+
+        words.forEach((item, index) => {
+            const quizItem = document.createElement('div');
+            quizItem.classList.add('quiz-item');
+
+            const word = document.createElement('div');
+            word.classList.add('word');
+            word.textContent = item.left;
+
+            const inputContainer = document.createElement('div');
+            inputContainer.classList.add('input-container');
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Type your answer';
+            input.dataset.correctAnswer = item.right.toLowerCase();
+
+            const tick = document.createElement('span');
+            tick.classList.add('tick');
+            tick.textContent = '✓';
+
+            input.addEventListener('input', () => {
+                if (input.value.toLowerCase() === input.dataset.correctAnswer) {
+                    tick.style.display = 'inline';
+                } else {
+                    tick.style.display = 'none';
+                }
+            });
+
+            inputContainer.appendChild(input);
+            inputContainer.appendChild(tick);
+            quizItem.appendChild(word);
+            quizItem.appendChild(inputContainer);
+            quizContainer.appendChild(quizItem);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 2022 Physiology </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(quiz.webp);
+            background-position: center;
+            background-size: cover;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            /* left: 0; */
+            /* align-content: center; */
+            text-align: center;
+            /* justify-content: center; */
+            width: 80%;
+            padding: 10px 20px;
+            background: #060625;
+            display: flex;
+            border-radius: 6px;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav {
+            color: #ffffff;
+            text-align: center;
+            padding-left: 1.7rem;
+            text-decoration: none;
+            border-left: 2px solid #ffffff;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 28px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header h2 {
+            color: #ffffff;
+            text-align: center;
+            padding-left: 1.7rem;
+            border-left: 2px solid #ffffff;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left ;
+            width: 300px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .options button:hover {
+            background-color: #0056b3;
+        }
+        .options button.correct {
+            background-color: #28a745 !important;
+        }
+        .options button.wrong {
+            background-color: #dc3545 !important;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #next-button, #result-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #next-button:hover, #result-button:hover {
+            background-color: #0056b3;
+        }
+        .chapwa {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+        .result-box {
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(.9);
+            width: 300px;
+            height: 400px;
+            background: transparent;
+            border: 2px solid #c40894;
+            border-radius: 6px;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 1;
+            pointer-events: auto;
+            transition: .3s ease;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .percentage-container {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0px 40px;
+        }
+        .circular-progress {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background: conic-gradient(#c40094 3.6deg, rgba(255, 255, 255, .4) 0deg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circular-progress::before {
+            content: '';
+            position: absolute;
+            width: 210px;
+            height: 210px;
+            background: seagreen;
+            border-radius: 50%;
+            background: rgb(61, 65, 61);
+        }
+        .progress-value {
+            position: relative;
+            font-size: 45px;
+            font-weight: 600;
+        }
+        .score-text {
+            font-size: 26px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .result-box .buttons {
+            display: flex;
+        }
+        .buttons button{
+            width: 130px;
+            height: 47px;
+            outline: none;
+            background: #c40094;
+            border: 2px solid #c40094;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            margin: 0 20px 20px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .buttons button:nth-child(1):hover {
+            background: #950170;
+            color: #fff;
+        }
+        .buttons button:nth-child(2) {
+            background: transparent;
+            color: #c40094;
+        }
+        .buttons button:nth-child(2):hover {
+            background: #c40094;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"> 2022 Test 3 </a>
+
+    
+        <h2> Physiology </h2>
+
+        <a href="../Totoz Study Space/physiology-test3.html" class="nav"> Back </a>
+
+    </header>
+
+    <div class="quiz-container">
+        <!-- <h1>MCQ Quiz</h1> -->
+        <div id="question-container">
+            <h2 id="question">Question will appear here</h2>
+            <div class="options">
+                <button class="option" onclick="checkAnswer(this)">Option 1</button>
+                <button class="option" onclick="checkAnswer(this)">Option 2</button>
+                <button class="option" onclick="checkAnswer(this)">Option 3</button>
+                <button class="option" onclick="checkAnswer(this)">Option 4</button>
+                <button class="option" onclick="checkAnswer(this)">Option 5</button>
+            </div>
+            <p id="feedback"></p>
+            <button id="next-button" onclick="nextQuestion()">Next Question</button>
+            <button id="result-button" onclick="showResults()">See Results</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+        {
+        "question": "1. Alveolar ventilation in a male with a respiratory rate of 10/min and tidal volume of 600 ml is:",
+        "options": ["5500", "5750", "6000", "4500", "5000"],
+        "correctAnswer": "4500",
+        "explanation": "Alveolar ventilation is calculated as (Tidal Volume - Dead Space) × Respiratory Rate. Assuming a dead space of 150 ml, the calculation is (600 - 150) × 10 = 4500 ml/min."
+    },
+    {
+        "question": "2. A healthy, 45-year-old man is reading the newspaper. Which of the following muscles are used for quiet breathing?",
+        "options": [
+            "Diaphragm and external intercostal muscles",
+            "Diaphragm only",
+            "Diaphragm and internal intercostal muscles",
+            "External and internal intercostal muscles",
+            "Internal intercostal muscles only"
+        ],
+        "correctAnswer": "Diaphragm and external intercostal muscles",
+        "explanation": "Quiet breathing mainly involves contraction of the diaphragm and external intercostal muscles, which help in expanding the thoracic cavity."
+    },
+    {
+        "question": "3. A healthy, 25-year-old medical student participates in a 10-km charity run for the Zambian Heart Association. Which of the following muscles does the student use during expiration?",
+        "options": [
+            "Diaphragm and external intercostal muscles",
+            "Diaphragm only",
+            "Diaphragm and internal intercostal muscles",
+            "Internal intercostal and recti abdomini muscles",
+            "Sternocleidomastoid"
+        ],
+        "correctAnswer": "Internal intercostal and recti abdomini muscles",
+        "explanation": "During active expiration, such as in exercise, internal intercostal muscles and abdominal muscles, including the recti abdomini, contract to force air out of the lungs."
+    },
+    {
+        "question": "4. The basic rhythm of respiration is generated by neurons located in the brain stem. Which of the following limits the duration of inspiration and increases respiratory rate?",
+        "options": [
+            "Apneustic center",
+            "Dorsal respiratory group",
+            "Afferent vagal fibers",
+            "Ventral respiratory groups",
+            "Nucleus tractor solitarius"
+        ],
+        "correctAnswer": "Afferent vagal fibers",
+        "explanation": "Afferent vagal fibers provide feedback to the brain stem, particularly to the pneumotaxic center, which helps terminate inspiration and increase respiratory rate."
+    },
+    {
+        "question": "5. Which of the following statements is true?",
+        "options": [
+            "The physiological dead space can be measured by the single breath N2",
+            "The anatomical dead space can be measured by using Bohr's equation",
+            "Due to anatomical dead space, alveolar ventilation is much decreased in shallow rapid breathing",
+            "Either the diaphragm or external intercostal muscles alone can maintain adequate ventilation during muscular exercise",
+            "The diaphragm accounts for about 50% of the change in intrathoracic volume during quiet inspiration"
+        ],
+        "correctAnswer": "Due to anatomical dead space, alveolar ventilation is much decreased in shallow rapid breathing",
+        "explanation": "Shallow rapid breathing leads to increased ventilation of anatomical dead space, thereby decreasing effective alveolar ventilation."
+    }
+];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            document.getElementById('question').textContent = currentQuestion.question;
+            const buttons = document.querySelectorAll(".option");
+            buttons.forEach((btn, index) => {
+                btn.textContent = currentQuestion.options[index];
+                btn.disabled = false;
+                btn.classList.remove('correct', 'wrong');
+            });
+            document.getElementById('feedback').textContent = "";
+            document.getElementById('next-button').style.display = "none";
+        }
+
+        function checkAnswer(button) {
+            const currentQuestion = questions[currentQuestionIndex];
+            const buttons = document.querySelectorAll(".option");
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (button.textContent === currentQuestion.correctAnswer) {
+                button.classList.add('correct');
+                document.getElementById('feedback').textContent = "Correct!";
+                document.getElementById('feedback').style.color = "#28a745";
+                score++;
+            } else {
+                button.classList.add('wrong');
+                document.getElementById('feedback').textContent = currentQuestion.explanation;
+                document.getElementById('feedback').style.color = "#dc3545";
+
+                buttons.forEach(btn => {
+                    if (btn.textContent === currentQuestion.correctAnswer) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+
+            if (currentQuestionIndex < questions.length - 1) {
+                document.getElementById('next-button').style.display = "block";
+            } else {
+                document.getElementById('result-button').style.display = "block";
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            const totalQuestions = questions.length;
+            const percentage = Math.round((score / totalQuestions) * 100);
+
+    // Initialize the result box content
+    document.getElementById('question-container').innerHTML = `
+    <div class="result-box">
+        <h2>Quiz Result</h2>
+        <div class="percentage-container">
+            <div class="circular-progress">
+                <span class="progress-value">0%</span>
+            </div>
+            <span class="score-text">Your Score 0 out of ${totalQuestions}</span>
+        </div>
+        <div class="buttons">
+            <button class="tryagain-btn" onclick="restartQuiz()">Try Again</button>
+            <button class="done-btn" onclick="finishQuiz()">Done</button>
+        </div>
+    </div>
+    `;
+
+    let progressValue = 0;
+    let speed = 20;  // Speed of the animation (the lower the value, the faster the animation)
+    
+    // Animate the percentage and color
+    const progressInterval = setInterval(() => {
+        progressValue++;
+        document.querySelector('.progress-value').textContent = `${progressValue}%`;
+        document.querySelector('.circular-progress').style.background = `conic-gradient(
+            #c40094 ${progressValue * 3.6}deg,
+            rgba(255, 255, 255, .4) ${progressValue * 3.6}deg
+        )`;
+        document.querySelector('.score-text').textContent = `Your Score ${Math.round((progressValue / 100) * totalQuestions)} out of ${totalQuestions}`;
+
+        if (progressValue === percentage) {
+            clearInterval(progressInterval);
+        }
+    }, speed);
+}
+
+
+        function restartQuiz() {
+            window.location.reload();
+        }
+
+        function finishQuiz() {
+            window.location.href = 'physiology-test3.html';
+            // Add any additional actions you want to take when the quiz is done
+        }
+
+        // Load the first question when the page is loaded
+        loadQuestion();
+    </script>
+</body>
+</html>
