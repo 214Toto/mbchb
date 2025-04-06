@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Labeling Quiz</title>
+    <style>
+        /* Dark Theme */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            margin: auto;
+            padding: 10px 20px;
+            background: #060625;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav {
+            color: #ffffff;
+            text-align: center;
+            padding-left: 1.7rem;
+            text-decoration: none;
+            border-left: 2px solid #ffffff;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 28px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header h2 {
+            color: #ffffff;
+            text-align: center;
+            padding-left: 1.7rem;
+            border-left: 2px solid #ffffff;
+        }
+
+
+        h1 {
+            color: #00bcd4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-container {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            margin-top: 20px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .question {
+            font-size: 18px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            width: 60%;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #555;
+            color: #fff;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #007c8a;
+        }
+
+        .submit-all {
+            margin-top: 30px;
+            width: 200px;
+            font-size: 18px;
+        }
+
+        .result {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .feedback {
+            font-size: 16px;
+            color: #ff5722;
+            margin-top: 10px;
+        }
+
+        .correct {
+            color: #4CAF50;
+        }
+
+        .incorrect {
+            color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo"> CBU SOM </a>
+
+    
+        <h2> Totoz Collection ! </h2>
+
+        <a href="../zz.Gross-3rd-year/gross-T1.html" class="nav"> Back </a>
+
+    </header>
+    <h1> Female Pelvis Quiz </h1>
+    <p>Type the name of the structure that each label represents from the image below:</p>
+
+    <!-- Image with labels -->
+    <img src="../zz.gross-img/female-pelvis1.JPG" alt="Labeled Image">
+
+    <div class="quiz-container">
+        <div class="question">
+            <label for="label1">1. What does Label 1 represent?</label><br>
+            <input type="text" id="label1" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label1', 'Pelvic bone')">Submit Label 1</button>
+            </div>
+            <div id="feedback-label1" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label2">2. What does Label 2 represent?</label><br>
+            <input type="text" id="label2" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label2', 'Sacrum')">Submit Label 2</button>
+            </div>
+            <div id="feedback-label2" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label3">3. What does Label 3 represent?</label><br>
+            <input type="text" id="label3" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label3', 'Coccyx')">Submit Label 3</button>
+            </div>
+            <div id="feedback-label3" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label4">4. What does Label 4 represent?</label><br>
+            <input type="text" id="label4" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label4', 'Anterior superior iliac spine')">Submit Label 4</button>
+            </div>
+            <div id="feedback-label4" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label5">5. What does Label 5 represent?</label><br>
+            <input type="text" id="label5" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label5', 'Pubic tubercle')">Submit Label 5</button>
+            </div>
+            <div id="feedback-label5" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label6">6. What does Label 6 represent?</label><br>
+            <input type="text" id="label6" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label6', 'Pubic symphysis')">Submit Label 6</button>
+            </div>
+            <div id="feedback-label6" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label7">7. What does Label 7 represent?</label><br>
+            <input type="text" id="label7" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label7', 'Ischial tuberosity')">Submit Label 7</button>
+            </div>
+            <div id="feedback-label7" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label8">8. What does Label 8 represent?</label><br>
+            <input type="text" id="label8" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label8', 'Obturator foramen')">Submit Label 8</button>
+            </div>
+            <div id="feedback-label8" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label9">9. What does Label 9 represent?</label><br>
+            <input type="text" id="label9" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label9', 'Ischial spine')">Submit Label 9</button>
+            </div>
+            <div id="feedback-label9" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label for="label10">10. What does Label 10 represent?</label><br>
+            <input type="text" id="label10" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="checkAnswer('label10', 'Pelvic Inlet')">Submit Label 10</button>
+            </div>
+            <div id="feedback-label10" class="feedback"></div>
+        </div>
+
+        <button class="submit-all" onclick="submitAllAnswers()">Submit All Answers</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Track the correct answers
+        const correctAnswers = {
+            label1: "Pelvic Bone",
+            label2: "Sacrum",
+            label3: "Coccyx",
+            label4: "Anterior Superior Iliac Spine",
+            label5: "Pubic Tubercle",
+            label6: "Pubic Symphysis",
+            label7: "Ischial Tuberosity",
+            label8: "Obturator Foramen",
+            label9: "Ischial Spine",
+            label10: "Pelvic Inlet"
+        };
+
+        // Keep score and feedback
+        let score = 0;
+
+        function checkAnswer(labelId, correctAnswer) {
+            const userAnswer = document.getElementById(labelId).value.trim();
+            const feedbackElement = document.getElementById('feedback-' + labelId);
+            
+            // Check answer
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                feedbackElement.textContent = "Correct!";
+                feedbackElement.classList.remove('incorrect');
+                feedbackElement.classList.add('correct');
+                score++;
+            } else {
+                feedbackElement.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
+                feedbackElement.classList.remove('correct');
+                feedbackElement.classList.add('incorrect');
+            }
+        }
+
+        function submitAllAnswers() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `You got ${score} out of 10 correct!`;
+        }
+    </script>
+
+</body>
+</html>

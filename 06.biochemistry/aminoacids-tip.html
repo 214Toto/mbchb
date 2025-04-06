@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Hints</title>
+    <link rel="stylesheet" href="../med2/Totoz-Study-Space/style.css">
+    <style>
+        body {
+            /* background: linear-gradient(135deg, #1e3c72, #2a5298); */
+            background-image: url(../img/course-02.jpg);
+            /* background-position: center; */
+            /* background-size: cover; */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .tip, .resources, .books {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        iframe {
+            width: 100%;
+            border-radius: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .video-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .video-section {
+      background-image: url(../img2/Doc2.jpg);
+      background-position: center;
+      background-size: contain;
+        /* background: white; */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        margin: 12px auto;
+    }
+
+    iframe {
+        width: 100%;
+        height: 90%;
+        border-radius: 8px;
+    }
+
+    .button-container {
+        margin-top: 15px;
+    }
+
+    .custom-button {
+        background: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 5px;
+    }
+
+    .custom-button:hover {
+        background: #0056b3;
+    }
+
+    .download-button {
+        background: #28a745;
+    }
+
+    .download-button:hover {
+        background: #1e7e34;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo"> CBU SOM </a>
+
+    
+        <h2> Totoz Collection ! </h2>
+
+        <a href="biochem-T1.html" class="nav"> Back </a>
+
+    </header>
+
+    <!-- <img class="logo" src="../img2/Log.png"> -->
+
+    <div class="container">
+        <h1>📚 Amino Acids Study Tip 🎯</h1>
+        <div class="tips">
+            <!-- <div class="tip">
+                <h2>🕒 Time Management</h2>
+                <p>Use the Pomodoro technique: Study for 25 minutes, take a 5-minute break, and repeat.</p>
+            </div> -->
+            <div class="tip">
+                <h2>🧠 Memory Techniques</h2>
+                <p> Use mnemonics to memorize the 20 amino acids and also how they are grouped as Essential and non Essential and all those other classifications .</p>
+                <button class="custom-button download-button"><a href="aminoacids-mneonics.html">⬇ Download mnemonics document</a></button>
+            </div>
+            <div class="tip">
+                <h2>📖 Focus Area</h2>
+                <p> Yes you are ecpexted to know the structure of each amino acid. Know how each side chain differes from the other.</p>
+            </div>
+            <div class="tip">
+                <h2>🌟 General Study Tips</h2>
+                <p>Stay hydrated, get enough sleep, and avoid multitasking for better focus.</p>
+            </div>
+        </div>
+        
+        <div class="resources">
+            <h2>📺 Recommended YouTube Video</h2>
+            <div class="video-section">
+                <iframe 
+                    id="videoFrame"
+                    src="https://drive.google.com/file/d/1TppDiD3AwmIJX5tbKvzH45-igJzuLP0N/preview" 
+                    allow="autoplay; encrypted-media">
+                </iframe>
+                <div class="button-container">
+                    <button class="custom-button" onclick="document.getElementById('videoFrame').requestFullscreen()">🔲 Full Screen</button>
+                    <a href="https://drive.google.com/uc?export=download&id=1TppDiD3AwmIJX5tbKvzH45-igJzuLP0N">
+                        <button class="custom-button download-button">⬇ Download Video</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="books">
+            <h2>📚 Extra Books to Use</h2>
+            <p> The recommended book fo rhtis topic is Textbook of Biochemistry for Medical Biochemistry 7th Edition <br> But below is an extract of the topic amino acids form that book.  </p>
+                <button class="custom-button download-button"><a href="aminoacids-textbook.html">⬇ Download Amino Acid TextBook Version</a></button>
+            
+        </div>
+    </div>
+</body>
+</html>
